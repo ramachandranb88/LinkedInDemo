@@ -1,0 +1,10 @@
+{
+  "name": "LinkedInDemo",
+
+"devDependencies": {
+  "selenium-webdriver" : "^3.4.0",
+  "chromedriver": "^2.30.1"
+
+}
+
+}
