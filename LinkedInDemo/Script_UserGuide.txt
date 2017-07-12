@@ -1,6 +1,7 @@
 
 Step 1: Download from git path :  https://github.com/ramachandranb88/LinkedInDemo
 Step 2: Save and get into the folder in command prompt and perform : "npm install --save-dev"
+Step 3: Update the environment variable - Path with the chrome Path = %node_modules%\chromedriver\lib\chromedriver"
 
 Step - Connect Request: 
 Perform connect request using command - "node LinkedInConnect.js"
