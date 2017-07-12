@@ -6,7 +6,6 @@ module.exports = {
   login_SubmitBtn_Id: "login-submit",
   searchTextBox_Xpath: ".//input[contains(@id,'a11y-ember')]",
   Ad_SearchTtitle_Xpath: "advanced-search-title",
-<<<<<<< HEAD
   Ad_LocationAdBtn_Id: "sf-facetGeoRegion-add",
   Ad_LocationText_Xpath: ".//*[contains(@id,'ember') and contains(@placeholder,'location name')]",
   Ad_SearchList_Xpath: ".//*[@role='listbox']/li",
@@ -23,12 +22,7 @@ module.exports = {
   paginatorNextBtn_Xpath: ".//button[@class='next']",
   messageTextBox_Xpath: ".//textarea[contains(@class,'text-area msg-messaging-form')]",
   sendMessageBtn_Xpath: ".//button[contains(@class,'send-button')]",
-  closeMessage_Xpath : ".//button[@data-control-name='overlay.close_conversation_window']",
-=======
-
-
->>>>>>> origin/master
-
+  closeMessage_Xpath : ".//button[@data-control-name='overlay.close_conversation_window']
 
 
 getFilterSection : function(filterName)
