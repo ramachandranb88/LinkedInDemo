@@ -22,7 +22,7 @@ module.exports = {
   paginatorNextBtn_Xpath: ".//button[@class='next']",
   messageTextBox_Xpath: ".//textarea[contains(@class,'text-area msg-messaging-form')]",
   sendMessageBtn_Xpath: ".//button[contains(@class,'send-button')]",
-  closeMessage_Xpath : ".//button[@data-control-name='overlay.close_conversation_window']
+  closeMessage_Xpath : ".//button[@data-control-name='overlay.close_conversation_window'],
 
 
 getFilterSection : function(filterName)
