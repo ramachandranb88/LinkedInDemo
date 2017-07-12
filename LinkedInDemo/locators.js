@@ -5,7 +5,7 @@ module.exports = {
   login_Password_Id : "login-password",
   login_SubmitBtn_Id: "login-submit",
   searchTextBox_Xpath: ".//input[contains(@id,'a11y-ember')]",
-  Ad_SearchTtitle_Xpath: "advanced-search-title"
+  Ad_SearchTtitle_Xpath: "advanced-search-title",
 
 
 
