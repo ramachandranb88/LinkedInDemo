@@ -1,0 +1,68 @@
+
+Step 1: Download from git path :  https://github.com/ramachandranb88/LinkedInDemo
+Step 2: Save and get into the folder in command prompt and perform : "npm install --save-dev"
+
+Step - Connect Request: 
+Perform connect request using command - "node LinkedInConnect.js"
+Guidelines on script for Step - Connect Request:
+Update the username, password, filter flags and filter parameter variables before performing the step 3 action
+
+Note: Still I'm yet to add the send invite button click action in the script, once this automation flow is OK to proceed will add that action and share the latest.
+
+Test run set up Example:
+- Open LinkedInConnect.js file in javascript editor IDE
+- username: xyssss, password: xysssssss,
+- connectFilter1st_flag = false;
+connectFilter2nd_flag = true; connectFilter3rd_flag = true;
+
+
+- KeywordsSearch_flag = true;
+
+- searchTitle = "Tester";
+
+
+- LocationsSearch_flag = true;
+
+- addCountry = "United States";
+
+
+- CompanySearch_flag = true;
+
+- addCompany = "Tata Consultancy";
+
+
+- maxConnectCount = 12;
+
+
+
+Step - Message Request: 
+Perform message request using command - "node LinkedInMessage.js"
+Guidelines on script for Step - Message Request:
+Update the username, password, filter flags and filter parameter variables before performing the step 3 action
+
+Test run set up Example:
+- Open LinkedInConnect.js file in javascript editor IDE
+- username: xyssss, password: xysssssss,
+- connectFilter1st_flag = true;
+connectFilter2nd_flag = false; connectFilter3rd_flag = false;
+
+- KeywordsSearch_flag = false;
+
+- searchTitle = "";
+
+
+- LocationsSearch_flag = false;
+- addCountry = "United States";
+
+
+- CompanySearch_flag = false;
+- addCompany = "Tata Consultancy";
+
+
+- maxConnectCount = 5;
+
+
+
+
+
+
