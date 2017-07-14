@@ -10,8 +10,8 @@ var browser = new webdriver.Builder().usingServer().withCapabilities({
 }).build();
 
 //Script dependent inputs
-username = "xyz";
-password = "xys";
+username = "ramachandran.b88@gmail.com";
+password = "qaram@94424";
 
 var connectFilter1st_flag = false;
 var connectFilter2nd_flag = true;
@@ -43,7 +43,7 @@ browser.manage().timeouts().implicitlyWait(10000);
 
 browser.findElement(By.id(locator.login_UserName_Id)).sendKeys(username);
 browser.findElement(By.id(locator.login_Password_Id)).sendKeys(password);
-browser.findElement(By.id(locator.login_SubmitBtn_Id)).click();
+browser.findElement(By.id(locator.login_SubmitBtn_Id)).click().then(function(){sleep(5000)});
 browser.findElement(By.xpath(locator.searchTextBox_Xpath)).sendKeys("" + webdriver.Key.ENTER).then(function() {
     console.log('Step - Navigation to Advance search page - Done');
     sleep(10000);
@@ -61,6 +61,7 @@ if (KeywordsSearch_flag) {
 
 if (LocationsSearch_flag) {
     browser.executeScript("arguments[0].scrollIntoView(false);",   browser.findElement(By.xpath(locator.getFilterSection("Locations"))));
+    browser.executeScript(locator.scrollElementIntoMiddle,browser.findElement(By.xpath(locator.getFilterSection("Locations"))));
     browser.findElement(By.xpath(locator.getFilterSection("Locations"))).click().then(function(){sleep(5000)});
     var addLocationEle = browser.findElement(By.id(locator.Ad_LocationAdBtn_Id));
     browser.executeScript("arguments[0].scrollIntoView(false)", addLocationEle);
@@ -69,6 +70,7 @@ if (LocationsSearch_flag) {
         sleep(5000);
     });
     browser.findElements(By.xpath(locator.Ad_SearchList_Xpath)).then(function(list) {
+        browser.executeScript(locator.scrollElementIntoMiddle,list[0]);
         list[0].click().then(function() {
             console.log('Step - Add location filter @ locations - Done');
             sleep(10000);
@@ -80,14 +82,17 @@ if (LocationsSearch_flag) {
 }
 if (CompanySearch_flag) {
     browser.wait(until.elementLocated(By.xpath(locator.getFilterSection("Current companies"))), 10000, 'testttt - unable to locate element');
-    browser.findElement(By.xpath(locator.getFilterSection("Current companies"))).click();
+    browser.executeScript("arguments[0].scrollIntoView(false);",   browser.findElement(By.xpath(locator.getFilterSection("Current companies"))));
+    browser.executeScript(locator.scrollElementIntoMiddle,browser.findElement(By.xpath(locator.getFilterSection("Current companies"))));
+    browser.findElement(By.xpath(locator.getFilterSection("Current companies"))).click().then(function(){sleep(5000)});
     var addCompanyEle = browser.findElement(By.id(locator.Ad_CurCompanyAdBtn_Id));
-    browser.executeScript("arguments[0].scrollIntoView(false)", addCompanyEle);
+    browser.executeScript("arguments[0].scrollIntoView(false);", addCompanyEle);
     addCompanyEle.click();
     browser.findElement(By.xpath(locator.Ad_CurCompanyAdBtn_Xpath)).sendKeys(addCompany).then(function() {
         sleep(5000);
     });
     browser.findElements(By.xpath(locator.Ad_SearchList_Xpath)).then(function(list) {
+      browser.executeScript(locator.scrollElementIntoMiddle,list[0]);
         list[0].click().then(function() {
             console.log('Step - Add company filter @ Current Companies - Done');
             sleep(10000);
@@ -116,6 +121,7 @@ for (var j = 0; j < maxPageNavCount; j++) {
 
     browser.findElements(By.className("search-result__wrapper")).then(function(resultRows) {
         browser.executeScript("arguments[0].scrollIntoView(true)", resultRows[(resultRows.length - 1)]);
+        browser.executeScript(locator.scrollElementIntoMiddle,resultRows[(resultRows.length - 1)]);
         browser.executeScript("arguments[0].scrollIntoView(true)", browser.findElement(By.xpath(locator.searchTextBox_Xpath))).then(function() {
             sleep(5000);
         });
@@ -156,6 +162,7 @@ for (var j = 0; j < maxPageNavCount; j++) {
                                     console.log('\nPending Connection request count:' + maxConnectCount);
                                     if (rowCount == 10) {
                                         browser.executeScript("arguments[0].scrollIntoView(false)", browser.findElement(By.xpath(locator.paginatorNextBtn_Xpath)));
+                                        browser.executeScript(locator.scrollElementIntoMiddle,browser.findElement(By.xpath(locator.paginatorNextBtn_Xpath)));
                                         browser.findElement(By.xpath(locator.paginatorNextBtn_Xpath)).click().then(function() {
                                             sleep(10000)
                                         });

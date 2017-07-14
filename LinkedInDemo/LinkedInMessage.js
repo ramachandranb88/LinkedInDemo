@@ -60,14 +60,17 @@ if (KeywordsSearch_flag) {
 
 if (LocationsSearch_flag) {
     browser.executeScript("arguments[0].scrollIntoView(false);",   browser.findElement(By.xpath(locator.getFilterSection("Locations"))));
+    browser.executeScript(locator.scrollElementIntoMiddle,browser.findElement(By.xpath(locator.getFilterSection("Locations"))));
     browser.findElement(By.xpath(locator.getFilterSection("Locations"))).click().then(function(){sleep(5000)});
     var addLocationEle = browser.findElement(By.id(locator.Ad_LocationAdBtn_Id));
+    browser.executeScript(locator.scrollElementIntoMiddle,addLocationEle);
     browser.executeScript("arguments[0].scrollIntoView(false)", addLocationEle);
     addLocationEle.click();
     browser.findElement(By.xpath(locator.Ad_LocationText_Xpath)).sendKeys(addCountry).then(function() {
         sleep(5000);
     });
     browser.findElements(By.xpath(locator.Ad_SearchList_Xpath)).then(function(list) {
+      browser.executeScript(locator.scrollElementIntoMiddle,list[0]);
         list[0].click().then(function() {
             console.log('Step - Add location filter @ locations - Done');
             sleep(10000);
@@ -79,6 +82,8 @@ if (LocationsSearch_flag) {
 }
 if (CompanySearch_flag) {
     browser.wait(until.elementLocated(By.xpath(locator.getFilterSection("Current companies"))), 10000, 'testttt - unable to locate element');
+    browser.executeScript("arguments[0].scrollIntoView(false);",   browser.findElement(By.xpath(locator.getFilterSection("Current companies"))));
+    browser.executeScript(locator.scrollElementIntoMiddle,browser.findElement(By.xpath(locator.getFilterSection("Current companies"))));
     browser.findElement(By.xpath(locator.getFilterSection("Current companies"))).click();
     var addCompanyEle = browser.findElement(By.id(locator.Ad_CurCompanyAdBtn_Id));
     browser.executeScript("arguments[0].scrollIntoView(false)", addCompanyEle);
@@ -87,6 +92,7 @@ if (CompanySearch_flag) {
         sleep(5000);
     });
     browser.findElements(By.xpath(locator.Ad_SearchList_Xpath)).then(function(list) {
+      browser.executeScript(locator.scrollElementIntoMiddle,list[0]);
         list[0].click().then(function() {
             console.log('Step - Add company filter @ Current Companies - Done');
             sleep(10000);
@@ -114,6 +120,7 @@ for (var j = 0; j < maxPageNavCount; j++) {
 
     browser.findElements(By.className("search-result__wrapper")).then(function(resultRows) {
         browser.executeScript("arguments[0].scrollIntoView(true)", resultRows[(resultRows.length - 1)]);
+        browser.executeScript(locator.scrollElementIntoMiddle,resultRows[(resultRows.length - 1)]);
         browser.executeScript("arguments[0].scrollIntoView(true)", browser.findElement(By.xpath(locator.searchTextBox_Xpath))).then(function() {
             sleep(5000);
         });
@@ -154,6 +161,7 @@ for (var j = 0; j < maxPageNavCount; j++) {
                                     browser.findElement(By.xpath(locator.closeMessage_Xpath)).click().then(function(){sleep(5000)});
                                     if (rowCount == 10) {
                                         browser.executeScript("arguments[0].scrollIntoView(false)", browser.findElement(By.xpath(locator.paginatorNextBtn_Xpath)));
+                                        browser.executeScript(locator.scrollElementIntoMiddle,browser.findElement(By.xpath(locator.paginatorNextBtn_Xpath)));
                                         browser.findElement(By.xpath(locator.paginatorNextBtn_Xpath)).click().then(function() {
                                             sleep(10000)
                                         });

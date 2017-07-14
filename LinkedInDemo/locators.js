@@ -24,6 +24,11 @@ module.exports = {
   sendMessageBtn_Xpath: ".//button[contains(@class,'send-button')]",
   closeMessage_Xpath : ".//button[@data-control-name='overlay.close_conversation_window']",
 
+  //Scroll Element to view Javascript:
+  scrollElementIntoMiddle : "var viewPortHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);"
+                                        + "var elementTop = arguments[0].getBoundingClientRect().top;"
+                                        + "window.scrollBy(25, elementTop-(viewPortHeight/2));",
+
 
 getFilterSection : function(filterName)
 {
