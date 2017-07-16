@@ -10,20 +10,20 @@ var browser = new webdriver.Builder().usingServer().withCapabilities({
 }).build();
 
 //Script dependent inputs
-username = "xyz";
-password = "xys";
+username = "ramachandran.b88@gmail.com";
+password = "qaram@94424";
 
-var connectFilter1st_flag = true;
-var connectFilter2nd_flag = false;
-var connectFilter3rd_flag = false;
+var connectFilter1st_flag = true;  //Set to false to skip 1st Connect Filter
+var connectFilter2nd_flag = true;  //Set to false to skip 2nd Connect Filter
+var connectFilter3rd_flag = true;  //Set to false to skip 3rd+ Connect Filter
 
-var KeywordsSearch_flag = false;
+var KeywordsSearch_flag = true;    //Set to false to skip Keword Search with Title
 var searchTitle = "Tester";
 
-var LocationsSearch_flag = false;
+var LocationsSearch_flag = true;  //Set to false to skip location search
 var addCountry = "United States";
 
-var CompanySearch_flag = false;
+var CompanySearch_flag = true;    //Set to false to skip Company Search
 var addCompany = "Tata Consultancy";
 
 var maxConnectCount = 2;
@@ -87,6 +87,7 @@ if (CompanySearch_flag) {
     browser.findElement(By.xpath(locator.getFilterSection("Current companies"))).click();
     var addCompanyEle = browser.findElement(By.id(locator.Ad_CurCompanyAdBtn_Id));
     browser.executeScript("arguments[0].scrollIntoView(false)", addCompanyEle);
+    browser.executeScript(locator.scrollElementIntoMiddle,addCompanyEle);
     addCompanyEle.click();
     browser.findElement(By.xpath(locator.Ad_CurCompanyAdBtn_Xpath)).sendKeys(addCompany).then(function() {
         sleep(5000);
@@ -146,7 +147,7 @@ for (var j = 0; j < maxPageNavCount; j++) {
                                     sleep(5000)
                                 });
 
-                                browser.findElement(By.xpath(locator.messageTextBox_Xpath)).sendKeys("Hi " + name + ", thanks for connecting. Is "+addCompany+" willing to hire experienced Tests. \nThanks!").then(function(){
+                                browser.findElement(By.xpath(locator.messageTextBox_Xpath)).sendKeys("Hi " + name + ", thanks for connecting. Is "+addCompany+" willing to hire experienced " +searchTitle+". \nThanks!").then(function(){
                                   sleep(5000);
                                   browser.findElement(By.xpath(locator.sendMessageBtn_Xpath)).click();
                                 }).then(function() {
