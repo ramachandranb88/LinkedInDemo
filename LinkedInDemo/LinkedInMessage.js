@@ -28,6 +28,8 @@ var addCompany = "Tata Consultancy";
 
 var maxConnectCount = 2;
 
+var messageText =  ", thanks for connecting. Is "+addCompany+" willing to hire experienced "+searchTitle+". \nThanks!";
+
 
 
 //Script reference Count
@@ -147,7 +149,7 @@ for (var j = 0; j < maxPageNavCount; j++) {
                                     sleep(5000)
                                 });
 
-                                browser.findElement(By.xpath(locator.messageTextBox_Xpath)).sendKeys("Hi " + name + ", thanks for connecting. Is "+addCompany+" willing to hire experienced " +searchTitle+". \nThanks!").then(function(){
+                                browser.findElement(By.xpath(locator.messageTextBox_Xpath)).sendKeys("Hi " + name + messageText).then(function(){
                                   sleep(5000);
                                   browser.findElement(By.xpath(locator.sendMessageBtn_Xpath)).click();
                                 }).then(function() {
