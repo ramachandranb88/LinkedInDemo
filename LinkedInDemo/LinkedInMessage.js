@@ -86,7 +86,7 @@ if (CompanySearch_flag) {
     browser.wait(until.elementLocated(By.xpath(locator.getFilterSection("Current companies"))), 10000, 'testttt - unable to locate element');
     browser.executeScript("arguments[0].scrollIntoView(false);",   browser.findElement(By.xpath(locator.getFilterSection("Current companies"))));
     browser.executeScript(locator.scrollElementIntoMiddle,browser.findElement(By.xpath(locator.getFilterSection("Current companies"))));
-    browser.findElement(By.xpath(locator.getFilterSection("Current companies"))).click();
+    browser.findElement(By.xpath(locator.getFilterSection("Current companies"))).click().then(function(){sleep(5000)});
     var addCompanyEle = browser.findElement(By.id(locator.Ad_CurCompanyAdBtn_Id));
     browser.executeScript("arguments[0].scrollIntoView(false)", addCompanyEle);
     browser.executeScript(locator.scrollElementIntoMiddle,addCompanyEle);
