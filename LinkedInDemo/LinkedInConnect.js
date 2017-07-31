@@ -10,8 +10,8 @@ var browser = new webdriver.Builder().usingServer().withCapabilities({
 }).build();
 
 //Script dependent inputs
-username = "spiker123@monmail.fr.nf";
-password = "qaram@94424";
+username = "xxxxxxxxxxx";
+password = "xxxxxxxxxxx";
 
 var connectFilter1st_flag = false;
 var connectFilter2nd_flag = true;
