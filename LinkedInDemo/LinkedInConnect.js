@@ -10,8 +10,8 @@ var browser = new webdriver.Builder().usingServer().withCapabilities({
 }).build();
 
 //Script dependent inputs
-username = "xxxxxxxxx";
-password = "xxxxxxxxx";
+username = "spiker123@monmail.fr.nf";
+password = "qaram@94424";
 
 var connectFilter1st_flag = false;
 var connectFilter2nd_flag = true;
@@ -21,12 +21,15 @@ var KeywordsSearch_flag = true;
 var searchTitle = "Tester";
 
 var LocationsSearch_flag = true;
-var addCountry = "United States";
+//var addCountry = "United States";
+
+var addCountry = "India";
+
 
 var CompanySearch_flag = true;
 var addCompany = "Tata Consultancy";
 
-var maxConnectCount = 12;
+var maxConnectCount = 60;
 
 
 
@@ -81,7 +84,7 @@ if (LocationsSearch_flag) {
 
 }
 if (CompanySearch_flag) {
-    browser.wait(until.elementLocated(By.xpath(locator.getFilterSection("Current companies"))), 10000, 'testttt - unable to locate element');
+    browser.wait(until.elementLocated(By.xpath(locator.getFilterSection("Current companies"))), 10000, 'Error - unable to locate element');
     browser.executeScript("arguments[0].scrollIntoView(false);",   browser.findElement(By.xpath(locator.getFilterSection("Current companies"))));
     browser.executeScript(locator.scrollElementIntoMiddle,browser.findElement(By.xpath(locator.getFilterSection("Current companies"))));
     browser.findElement(By.xpath(locator.getFilterSection("Current companies"))).click().then(function(){sleep(5000)});
@@ -127,12 +130,12 @@ for (var j = 0; j < maxPageNavCount; j++) {
         });
     }).then(function() {
         browser.findElements(By.className(locator.searchResultRows_Class)).then(function(resultRows) {
-
+            console.log('rows length =', resultRows.length);
             //Line Statement to check and load all 10 rows of search results page
             for (var i = 0; i < resultRows.length; i++) {
 
                 var name = '';
-
+                browser.executeScript(locator.scrollElementIntoMiddle,resultRows[i].findElement(By.xpath(locator.userNameLinkText_Xpath)));
                 resultRows[i].findElement(By.xpath(locator.userNameLinkText_Xpath)).getText().then(function(text) {
                     name = text;
                     rowCount++;
@@ -149,8 +152,9 @@ for (var j = 0; j < maxPageNavCount; j++) {
                                 browser.findElement(By.xpath(locator.inviteAddNoteBtn_Xpath)).click().then(function() {
                                     sleep(5000)
                                 });
+
                                 browser.findElement(By.xpath(locator.inviteMsgTextBox_Xpath)).sendKeys("Hi " + name + ", can we connect and discuss career options in " + addCountry + ". Thanks!");
-                                browser.findElement(By.xpath(".//button[@class='send-invite__cancel-btn']")).click().then(function() {
+                                browser.findElement(By.xpath(".//button[text()='Send invitation']")).click().then(function() {
                                     sleep(5000);
                                 }).then(function() {
                                     maxConnectCount--;
@@ -160,18 +164,24 @@ for (var j = 0; j < maxPageNavCount; j++) {
                                     }
                                     console.log('Sent connection request to user:' + name);
                                     console.log('\nPending Connection request count:' + maxConnectCount);
-                                    if (rowCount == 10) {
-                                        browser.executeScript("arguments[0].scrollIntoView(false)", browser.findElement(By.xpath(locator.paginatorNextBtn_Xpath)));
-                                        browser.executeScript(locator.scrollElementIntoMiddle,browser.findElement(By.xpath(locator.paginatorNextBtn_Xpath)));
-                                        browser.findElement(By.xpath(locator.paginatorNextBtn_Xpath)).click().then(function() {
-                                            sleep(10000)
-                                        });
-                                    }
+
                                 });
                             }
 
                         });
                     }
+                }).then(function(){
+
+                if (rowCount == resultRows.length) {
+                  browser.executeScript(locator.scrollElementIntoMiddle,browser.findElement(By.xpath(locator.paginatorNextBtn_Xpath)));
+
+                    browser.executeScript("arguments[0].scrollIntoView(false)", browser.findElement(By.xpath(locator.paginatorNextBtn_Xpath)));
+                    browser.executeScript(locator.scrollElementIntoMiddle,browser.findElement(By.xpath(locator.paginatorNextBtn_Xpath)));
+                    browser.findElement(By.xpath(locator.paginatorNextBtn_Xpath)).click().then(function() {
+                        console.log('Processing to next page navigation : Done')
+                        sleep(10000)
+                    });
+                }
                 });
 
 
